@@ -39,7 +39,11 @@ def load_image(url):
 
 
 def open_new_window():
-    img = load_image(url)
+    tag = tag_entry.get()
+    url_with_tag = f'https://cataas.com/cat/{tag}' if tag else 'https://cataas.com/cat'
+    img = load_image(url_with_tag)
+
+
     if img:
         # Создаем новое вторичное окно
         new_window = Toplevel()
@@ -61,6 +65,15 @@ def exit():
 window = Tk()
 window.title("Cats!")
 window.geometry("600x520")
+
+# Поле ввода для тегов
+tag_entry = Entry()
+tag_entry.pack()
+
+# Кнопка для загрузки изображения с тегом
+load_button = Button(text="Загрузить по тегу", command=open_new_window)
+load_button.pack()
+
 
 # # Создаем метку без изображения
 # label = Label()
